@@ -25,6 +25,7 @@ public class Deck
 {
 	private int nextCard; //this decides which card to take from the deck when a card is dealt
 	private Card[] deck;  //this array holds the deck of cards
+	Random randomNum;
 	
 	/**
 	 * Default Constructor        
@@ -91,7 +92,7 @@ public class Deck
 	public void shuffle()
 	{
 		nextCard = 0;
-		Random randomNum = new Random();
+		randomNum = new Random();
 		int ranNum = 0; 
 		Card tempCard = null;
 		for(int i = 0; i < 52; i++)
@@ -132,11 +133,7 @@ public class Deck
 		Hand handObj = new Hand(handSize);
 		
 		//this deals cards into the hand
-		for(int i = 0; i < handSize; i++)
-		{
-		handObj.addCard(dealACard());  
-		}
-		
+		for(int i = 0; i < handSize; i++) handObj.addCard(dealACard());  
 		return handObj; 
 		} 
 }

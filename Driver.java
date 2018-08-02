@@ -36,24 +36,36 @@ public class Driver
 	{
 		Scanner kb = new Scanner(System.in); //create a Scanner object
 		
-		int handSize = 0;    //size of hand for each player
+		int handSize   = 0;  //size of hand for each player
 		int numPlayers = 0;  //number of players to be dealt a hand
 		
 		//this makes sure a valid combination of cards per hand and number of players has been entered based on a 52 card deck
 		do
 		{
 			
-		System.out.println ("How many cards per hand?"); 
-		if(kb.hasNextInt()) handSize = kb.nextInt();
-		
-		System.out.println ("How many players?");
-		if(kb.hasNextInt()) numPlayers = kb.nextInt(); 
-		if(handSize * numPlayers >52) System.out.println("Not enought cards");
+			System.out.println ("How many cards per hand?"); 
+			while(!kb.hasNextInt()) 
+			{
+				System.out.println ("How many cards per hand?"); 
+				kb.next();
+			}
+			handSize = kb.nextInt();
+			
+			System.out.println ("How many players?");
+			while(!kb.hasNextInt()) 
+			{
+				System.out.println ("How many players?"); 
+				kb.next();
+			}
+			numPlayers = kb.nextInt();
+			if(handSize * numPlayers > 52) System.out.println("Not enought cards");
+			
 		}while((handSize * numPlayers) >52 || (handSize * numPlayers) <=0);
 		
 		
 		Deck myDeck = new Deck();  //create the Deck object
-		myDeck.shuffle();          //shuffle the Deck object
+		myDeck.shuffle();
+		myDeck.shuffle(); //shuffle the Deck object twice
 		
 		//this deals a hand for each player
 		for(int i = 0; i < numPlayers; i++)
